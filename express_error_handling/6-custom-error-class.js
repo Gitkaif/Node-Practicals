@@ -73,3 +73,5 @@ try {
   console.log("Is Operational:", err.isOperational);
   console.log("Stack:\n", err.stack);
 }
+
+module.exports = AppError;

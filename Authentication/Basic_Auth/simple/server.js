@@ -3,7 +3,7 @@ const express = require('express');
 
 const app = express();
 
-// Global middleware runs for EVERY incoming request
+// Global middleware runs for EVERY incoming request.....
 app.use((req, res, next) => {
 
     // Read the Authorization header from the request
