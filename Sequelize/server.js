@@ -4,11 +4,13 @@ const express = require("express");
 require("./models")
 const routes = require("./routes/user.route");
 const postRoutes = require('./routes/posts.route')
+const commentRoutes = require('./routes/comment.route')
 const app = express();
 
 app.use(express.json());
 app.use("/api", routes);
 app.use("/post",postRoutes)
+app.use("/comment",commentRoutes)
 app.get("/", (req, res) => {
   res.send("Home page");
 });

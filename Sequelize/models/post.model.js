@@ -15,5 +15,4 @@ const post = sequelize.define("post", {
   },
 });
 
-
-module.exports = post
+module.exports = post;
