@@ -1,5 +1,6 @@
 const User = require("../models/user.model");
-const post = require("../models/post.model")
+const post = require("../models/post.model");
+const comment = require("../models/comment.model");
 
 const createUser = async (req, res) => {
   const { name, email } = req.body;
@@ -66,13 +67,20 @@ const deleteUser = async (req, res) => {
   }
 };
 
-
-
-const getUserWithPosts = async(req,res)=>{
-  const user = await User.findByPk(req.params.id,{include:post})
-  if(!user){
-    return res.status(404).json({message:"user not found..."})
+const getUserWithPosts = async (req, res) => {
+  const user = await User.findByPk(req.params.id, {
+    include: { model: post, include: comment },
+  });
+  if (!user) {
+    return res.status(404).json({ message: "user not found..." });
   }
-  return res.status(200).json({data:user})
-}
-module.exports = { createUser, getUsers, getUserByID, updateUser, deleteUser , getUserWithPosts};
+  return res.status(200).json({ data: user });
+};
+module.exports = {
+  createUser,
+  getUsers,
+  getUserByID,
+  updateUser,
+  deleteUser,
+  getUserWithPosts,
+};
